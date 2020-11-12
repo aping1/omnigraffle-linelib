@@ -378,7 +378,12 @@ LineLib.fillRect = function(cnvs, solid) {
  
         line.strokeColor = (!sizes.length || ![0.0,0,null].some((x) => sizes[0]==x)) ?  hColor : Color.clear;
         line.strokePattern = lineType;
-        line.strokeThickness = ((!!sizes.length && sizes[0] > 1.0) ? sizes[0] : 1.0);
+
+        try { 
+            line.strokeThickness = ((!!sizes.length) ? sizes[0] : 0.23);
+        } catch (e) { 
+            line.strokeThickness = ((!!sizes.length && sizes[0] > 1.0) ? sizes[0] : 1.0);
+        }
         /* stroke color can be set to null, in this case use the solid's color */
         /* no drop shadow */
         line.shadowColor = null;
