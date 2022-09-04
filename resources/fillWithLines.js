@@ -1,13 +1,3 @@
-/*{
-	"type": "action",
-	"targets": ["omnigraffle"],
-	"author": "allie",
-	"identifier": "com.omni-automation.actions.fillwithLine",
-	"version": "1.0",
-	"description": "Action Description",
-	"label": "Fill object with lines",
-	"shortLabel": "Fill lines toolbar"
-}*/
 (() => {
 	// "identifier": "com.omni-automation.libraries.LineLib",
 	var action = new PlugIn.Action(function(selection, sender) {
@@ -16,18 +6,18 @@
 				plugInIDs = PlugIn.all.map(function(plugin){return plugin.identifier})
 				if (plugInIDs.includes(plugInID)){
 					plugIn = PlugIn.find(plugInID) 
-				} else {throw new Error("PlugIn not installed")}
+				} else {throw new Error("PlugIn " + plugInID.toString() + " not installed in " +libraryName)}
 				libraryNames = plugIn.libraries.map(function(library){return library.name})
 				if (libraryNames.includes(libraryName)){
 					return plugIn.library(libraryName)
-				} else {throw new Error("Library not in PlugIn")}
+				} else {throw new Error("PlugIn " + plugInID.toString() + " not found")}
 			} catch(err){
 				errTitle = "MISSING RESOURCE"
 				alert = new Alert(errTitle,err.message).show(function(result){})
 				throw err.message
 			}
 		}
-		var lineLib=loadLibrary("com.omni-automation.libraries.LineLib","lineLib")
+		var lineLib=loadLibrary("com.apt-miss.fill-tools","LineLib")
 	    var canvases=null
 		if (typeof selection == 'undefined'){
 			selection = document.windows[0].selection

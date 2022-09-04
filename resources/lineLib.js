@@ -1,7 +1,7 @@
 /*{
   "type": "library",
   "targets": ["omnigraffle"],
-  "identifier": "com.omni-automation.libraries.LineLib",
+  "identifier": "com.apt-miss.fill-tools.LineLib",
   "version": "1.2"
   }*/
 (() => {

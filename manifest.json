@@ -1,6 +1,6 @@
 {
 	"author": "aping1@apt-miss.com",
-	"identifier":"com.apt-miss.og.fill-tools",
+	"identifier":"com.apt-miss.fill-tools",
 	"version": "1.1",
 	"description": "Collection of Automation Scripts for laying out lines or objects evenly across a canvas using an obj's metadata and rect ",
 	"shortLabel": "Fill",
