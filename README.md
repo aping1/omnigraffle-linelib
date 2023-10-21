@@ -14,8 +14,9 @@ Set metadata parameter(s) on a solid as described below and run "fill lines".
 ## Future work
 - instead of locking the original object and making a new layer for the lines,
   group the new lines with the original solid.
+- see about implementing an action dialog form rather than using metadata
 - parameters for `marginLeft`, `marginRight`, `marginTop`, `marginBottom`
-- make this into a [self contained package](https://omni-automation.com/plugins/bundle.html)
+- ~~make this into a [self contained package](https://omni-automation.com/plugins/bundle.html)~~
 
 ## Resources
 - [OmniGraffle plugin documentation](https://omni-automation.com/plugins/index.html)
