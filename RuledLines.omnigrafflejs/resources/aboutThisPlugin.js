@@ -29,12 +29,12 @@
 		actionNamesString = actionNamesString + '\n' + actionTitles.join('\n')
 		alertTitle = pluginName + ' v' + versNum
 		var companyURL = 'https://omni-automation.com'
-		var documentationURL = 'https://github.oom/aping1/omnigraffle-linelib'
+		var documentationURL = 'https://github.com/aping1/omnigraffle-linelib'
 		var copyrightYear = new Date().getFullYear().toString()
 		alertMessage = "©" + copyrightYear + " " + pluginAuthor + '\n'
 		alertMessage = alertMessage + pluginID + '\n'
 		alertMessage = alertMessage + companyURL + '\n' + '\n'
-		alertMessage = alertMessage + pluginDescription + '\n' + '\n' 
+		alertMessage = alertMessage + pluginDescription + '\n' + '\n'
 		alertMessage = alertMessage + libraryNamesString + '\n' + '\n'
 		alertMessage = alertMessage + actionNamesString
 		var alert = new Alert(alertTitle, alertMessage)
