@@ -43,23 +43,23 @@
   var LineLib = new PlugIn.Library(new Version("1.3"));
   LineLib.solidsProps = new Map();
   LineLib.getLibraryFunctions = function() {
-    var functionTitles = ["getLibraryFunctions()", "lineProps(solid)", "fillRect(cnvs, solid)",
+    var functionTitles = ["getLibraryFunctions()", "lineProps(solid)", "fillRect(canvas, solid)",
       "reg_property(solid, metaName, propName, constructor, a_default)"
     ];
     var methods = Object.getOwnPropertyNames(this);
     console.log(methods);
     return "###### LineLib Functions #####\n\t--> " + functionTitles.join("\n\t--> ");
   }
-  LineLib.canvas_scale = function(cnvs, cnvspageSizeInchesWide = 9.25, cnvspageSizeInchesHigh = 7.75) {
+  LineLib.canvas_scale = function(canvas, canvaspageSizeInchesWide = 9.25, canvaspageSizeInchesHigh = 7.75) {
     var pageSizeInches = {
-      height: cnvspageSizeInchesHigh,
-      width: cnvspageSizeInchesWide
+      height: canvaspageSizeInchesHigh,
+      width: canvaspageSizeInchesWide
     }
-    var s_height = pageSizeInches["height"] / cnvs.pageSize.height;
-    var s_width = pageSizeInches["width"] / cnvs.pageSize.width;
-    if (cnvs.canvasSizeIsMeasuredInPage) {
-      s_height = cnvs.rect.height / cnvs.verticalPage;
-      s_width = cnvs.rect.width / cnvs.horizontalPage;
+    var s_height = pageSizeInches["height"] / canvas.pageSize.height;
+    var s_width = pageSizeInches["width"] / canvas.pageSize.width;
+    if (canvas.canvasSizeIsMeasuredInPage) {
+      s_height = canvas.rect.height / canvas.verticalPage;
+      s_width = canvas.rect.width / canvas.horizontalPage;
     }
     return ({
       height: s_height,
@@ -303,7 +303,7 @@
     this.reg_property(solid, "lock", "lock", Boolean);
     return solidsProps;
   }
-  LineLib.fillRect = function(cnvs, solid) {
+  LineLib.fillRect = function(canvas, solid) {
     var t = 0,
       p = 0,
       l = 0;
@@ -312,7 +312,7 @@
       rgroup = new Array();
     var rect = solid.geometry;
     /* Create a new layer */
-    var layer = cnvs.newLayer();
+    var layer = canvas.newLayer();
     /* placeholder graphic on this layer to place */
     layer.name = "Lines " + solid.name;
     var s = layer.addShape("Rectangle", rect);
@@ -365,10 +365,10 @@
      */
     var x_end = rect.y + rect.height;
     var y_end = rect.x + rect.width;
-    var steps = props.has("steps") ? props.get("steps") : cnvs.grid.majorSpacing;
-    var spacing = props.has("spacing") ? props.get("spacing") : cnvs.grid.spacing.toFixed(3);
-    s.setUserData("majorSpacing", cnvs.grid.majorSpacing.toString());
-    var line_spacing = spacing * (props.get("majorSpacing") || cnvs.grid.majorSpacing) / steps;
+    var steps = props.has("steps") ? props.get("steps") : canvas.grid.majorSpacing;
+    var spacing = props.has("spacing") ? props.get("spacing") : canvas.grid.spacing.toFixed(3);
+    s.setUserData("majorSpacing", canvas.grid.majorSpacing.toString());
+    var line_spacing = spacing * (props.get("majorSpacing") || canvas.grid.majorSpacing) / steps;
     if (props.has("pitch") && props.get("pitch")) {
       var pitch = props.get("pitch");
       line_spacing = line_spacing / pitch;
@@ -429,7 +429,7 @@
         line_x = vcumulative_offset + (line_num * line_spacing) + startx;
         var sPoint = new Point(line_x, rect.y);
         var ePoint = new Point(line_x, x_end);
-        var line = cnvs.addLine(sPoint, ePoint);
+        var line = canvas.addLine(sPoint, ePoint);
 
         line.shadowColor = null;
         line.name = `${vOnce ? "Only " : ""} { n:${line_num},`;
@@ -505,7 +505,7 @@
         sPoint = new Point(rect.x, line_y);
         ePoint = new Point(y_end, line_y);
         /* create the line */
-        line = cnvs.addLine(sPoint, ePoint);
+        line = canvas.addLine(sPoint, ePoint);
         line.name = `{ n:${line_num},`;
         if (lineTypes.length > 0) {
           line.name +=
